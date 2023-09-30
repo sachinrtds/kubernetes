@@ -1,9 +1,11 @@
 FROM ubuntu:latest
 MAINTAINER sachin@phonon.io
-RUN yum install -y httpd \ zip \ unzip
+RUN apt-get install -y apache2
+RUN apt-get install -y zip
+RUN apt-get install -y unzip
 ADD https://www.free-css.com/assets/files/free-css-templates/download/page258/loxury.zip /var/www/html
 WORKDIR /var/www/html
 RUN unzip loxury.zip
 RUN cp -rvf loxury/* .
-CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
 EXPOSE 80
